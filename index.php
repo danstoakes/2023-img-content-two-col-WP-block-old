@@ -7,7 +7,7 @@
  * Author: Dan Stoakes
  */
 
-defined( 'ABSPATH' ) || exit;
+defined("ABSPATH") || exit;
 
 function danstoakes_img_content_two_col_register_block () 
 {
