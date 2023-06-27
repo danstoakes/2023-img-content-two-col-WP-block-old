@@ -1,0 +1,11 @@
+{
+    "$schema": "https://json.schemastore.org/block.json",
+	"apiVersion": 2,
+	"name": "danstoakes/img-content-two-col",
+	"title": "Image Beside Content",
+	"textdomain": "danstoakes",
+	"icon": "universal-access-alt",
+	"category": "media",
+	"example": {},
+	"editorScript": "file:./index.js"
+}
