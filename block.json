@@ -9,14 +9,17 @@
 		"content": {
 			"type": "string",
 			"source": "html",
-			"selector": ".steps"
+			"selector": ".content"
 		},
 		"title": {
 			"type": "string",
 			"source": "html",
 			"selector": "h2"
 		},
-		"image": {
+		"mediaID": {
+			"type": "number"
+		},
+		"mediaURL": {
 			"type": "string",
 			"source": "attribute",
 			"selector": "img",
@@ -24,6 +27,6 @@
 		}
 	},
 	"example": {},
-	"editorScript": "file:./index.js",
+	"editorScript": "file:./block.js",
 	"style": "file:./style.css"
 }
