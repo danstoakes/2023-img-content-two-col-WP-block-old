@@ -3,9 +3,27 @@
 	"apiVersion": 2,
 	"name": "danstoakes/img-content-two-col",
 	"title": "Image Beside Content",
-	"textdomain": "danstoakes",
 	"icon": "universal-access-alt",
 	"category": "media",
+	"attributes": {
+		"content": {
+			"type": "string",
+			"source": "html",
+			"selector": ".steps"
+		},
+		"title": {
+			"type": "string",
+			"source": "html",
+			"selector": "h2"
+		},
+		"image": {
+			"type": "string",
+			"source": "attribute",
+			"selector": "img",
+			"attribute": "src"
+		}
+	},
 	"example": {},
-	"editorScript": "file:./index.js"
+	"editorScript": "file:./index.js",
+	"style": "file:./style.css"
 }
