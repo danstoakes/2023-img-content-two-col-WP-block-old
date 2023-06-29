@@ -15,6 +15,22 @@
 				source: 'children',
 				selector: 'h2',
 			},
+			content: {
+				type: 'array',
+				source: 'children',
+				selector: '.content',
+			},
+			buttonText: {
+				type: 'string',
+				source: 'text',
+				selector: '.button'
+			},
+			buttonUrl: {
+				type: 'string',
+				source: 'attribute',
+				selector: 'a',
+				attribute: 'href'
+			},
 			mediaID: {
 				type: 'number',
 			},
@@ -23,11 +39,6 @@
 				source: 'attribute',
 				selector: 'img',
 				attribute: 'src',
-			},
-			content: {
-				type: 'array',
-				source: 'children',
-				selector: '.content',
 			}
 		},
 
@@ -56,17 +67,48 @@
 			return el(
 				'div',
 				useBlockProps({ className: props.className }),
-				el(RichText, {
-					tagName: 'h2',
-					placeholder: __(
-						'Title',
-						'danstoakes'
-					),
-					value: attributes.title,
-					onChange: function (value) {
-						props.setAttributes({ title: value });
-					},
-				}),
+				el(
+					'div',
+					{ className: 'content-wrapper' },
+					el(RichText, {
+						tagName: 'h2',
+						placeholder: __(
+							'Title',
+							'danstoakes'
+						),
+						value: attributes.title,
+						onChange: function (value) {
+							props.setAttributes({ title: value });
+						},
+					}),
+					el(RichText, {
+						tagName: 'div',
+						placeholder: i18n.__(
+							'Content...',
+							'danstoakes'
+						),
+						value: attributes.content,
+						onChange: function (value) {
+							props.setAttributes({ content: value });
+						}
+					}),
+					el(RichText, {
+						tagName: 'span',
+						placeholder: __('Button text', 'danstoakes'),
+						value: attributes.buttonText,
+						onChange: function (value) {
+							props.setAttributes({ buttonText: value });
+						},
+					}),
+					el(RichText, {
+						tagName: 'a',
+						placeholder: __('Button URL', 'danstoakes'),
+						value: attributes.buttonUrl,
+						onChange: function (value) {
+							props.setAttributes({ buttonUrl: value });
+						},
+					})
+				),
 				el(
 					'div',
 					{ className: 'content-image' },
@@ -89,18 +131,7 @@
 							);
 						}
 					})
-				),
-				el(RichText, {
-					tagName: 'div',
-					placeholder: i18n.__(
-						'Content...',
-						'danstoakes'
-					),
-					value: attributes.content,
-					onChange: function (value) {
-						props.setAttributes({ content: value });
-					}
-				})
+				)
 			);
 		},
 		save: function (props) {
@@ -109,21 +140,30 @@
 			return el(
 				'div',
 				useBlockProps.save({ className: props.className }),
-				el(RichText.Content, {
-					tagName: 'h2',
-					value: attributes.title
-				}),
+				el(
+					'div',
+					useBlockProps.save({ className: 'content-wrapper' }),
+					el(RichText.Content, {
+						tagName: 'h2',
+						value: attributes.title
+					}),
+					el(RichText.Content, {
+						tagName: 'div',
+						className: 'content',
+						value: attributes.content
+					}),
+					attributes.buttonText &&
+						el('a', {
+							href: attributes.buttonUrl,
+							className: 'button',
+						}, attributes.buttonText)
+				),
 				attributes.mediaURL &&
 					el(
 						'div',
 						{ className: 'content-image' },
 						el('img', { src: attributes.mediaURL })
-					),
-				el(RichText.Content, {
-					tagName: 'div',
-					className: 'content',
-					value: attributes.content
-				})
+					)
 			);
 		}
 	});

@@ -28,5 +28,6 @@
 	},
 	"example": {},
 	"editorScript": "file:./block.js",
+	"editorStyle": "file:./style-editor.css",
 	"style": "file:./style.css"
 }
