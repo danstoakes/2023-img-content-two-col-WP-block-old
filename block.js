@@ -1,4 +1,4 @@
-( function (blocks, editor, i18n, element, components, _, blockEditor) {
+(function (blocks, editor, i18n, element, components, _, blockEditor) {
 	var __ = i18n.__;
 	var el = element.createElement;
 	var RichText = blockEditor.RichText;
@@ -32,56 +32,49 @@
 		},
 
 		example: {
-			/* attributes: {
-				title: __( 'Chocolate Chip Cookies', 'gutenberg-examples' ),
+			attributes: {
+				title: __( 'Image Beside Text', 'danstoakes' ),
 				mediaID: 1,
 				mediaURL:
 					'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/2ChocolateChipCookies.jpg/320px-2ChocolateChipCookies.jpg',
-				ingredients: [
-					{ type: 'li', props: { children: [ 'flour' ] } },
-					{ type: 'li', props: { children: [ 'sugar' ] } },
-					{ type: 'li', props: { children: [ 'chocolate' ] } },
-					{ type: 'li', props: { children: [ '💖' ] } },
+				content: [
+					__( 'This is some content!', 'danstoakes' ),
 				],
-				instructions: [
-					__( 'Mix, Bake, Enjoy!', 'gutenberg-examples' ),
-				],
-			}, */
+			},
 		},
 
 		edit: function ( props ) {
 			var attributes = props.attributes;
 
-			var onSelectImage = function ( media ) {
-				return props.setAttributes( {
+			var onSelectImage = function (media) {
+				return props.setAttributes({
 					mediaURL: media.url,
 					mediaID: media.id,
-				} );
+				});
 			};
 
 			return el(
 				'div',
-				useBlockProps( { className: props.className } ),
-				el( RichText, {
+				useBlockProps({ className: props.className }),
+				el(RichText, {
 					tagName: 'h2',
-
 					placeholder: __(
-						'Enter title..',
+						'Title',
 						'danstoakes'
 					),
 					value: attributes.title,
 					onChange: function ( value ) {
 						props.setAttributes( { title: value } );
 					},
-				} ),
+				}),
 				el(
 					'div',
 					{ className: 'recipe-image' },
-					el( MediaUpload, {
+					el(MediaUpload, {
 						onSelect: onSelectImage,
 						allowedTypes: 'image',
 						value: attributes.mediaID,
-						render: function ( obj ) {
+						render: function (obj) {
 							return el(
 								components.Button,
 								{
@@ -97,27 +90,26 @@
 						},
 					} )
 				),
-				el( 'h3', {}, i18n.__( 'Content', 'danstoakes' ) ),
-				el( RichText, {
+				el(RichText, {
 					tagName: 'div',
 					placeholder: i18n.__(
-						'Write instructions…',
+						'Content...',
 						'danstoakes'
 					),
 					value: attributes.content,
-					onChange: function ( value ) {
-						props.setAttributes( { content: value } );
+					onChange: function (value) {
+						props.setAttributes({ content: value });
 					},
 				} )
 			);
 		},
-		save: function ( props ) {
+		save: function (props) {
 			var attributes = props.attributes;
 
 			return null;
-		},
-	} );
-} )(
+		}
+	});
+})(
 	window.wp.blocks,
 	window.wp.editor,
 	window.wp.i18n,
