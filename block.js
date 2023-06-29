@@ -10,11 +10,6 @@
 		icon: 'index-card',
 		category: 'layout',
 		attributes: {
-            content: {
-				type: 'array',
-				source: 'children',
-				selector: '.content',
-			},
 			title: {
 				type: 'array',
 				source: 'children',
@@ -28,6 +23,11 @@
 				source: 'attribute',
 				selector: 'img',
 				attribute: 'src',
+			},
+			content: {
+				type: 'array',
+				source: 'children',
+				selector: '.content',
 			}
 		},
 
@@ -43,7 +43,7 @@
 			},
 		},
 
-		edit: function ( props ) {
+		edit: function (props) {
 			var attributes = props.attributes;
 
 			var onSelectImage = function (media) {
@@ -63,13 +63,13 @@
 						'danstoakes'
 					),
 					value: attributes.title,
-					onChange: function ( value ) {
-						props.setAttributes( { title: value } );
+					onChange: function (value) {
+						props.setAttributes({ title: value });
 					},
 				}),
 				el(
 					'div',
-					{ className: 'recipe-image' },
+					{ className: 'content-image' },
 					el(MediaUpload, {
 						onSelect: onSelectImage,
 						allowedTypes: 'image',
@@ -87,8 +87,8 @@
 									? __( 'Upload Image', 'danstoakes' )
 									: el( 'img', { src: attributes.mediaURL } )
 							);
-						},
-					} )
+						}
+					})
 				),
 				el(RichText, {
 					tagName: 'div',
@@ -99,14 +99,32 @@
 					value: attributes.content,
 					onChange: function (value) {
 						props.setAttributes({ content: value });
-					},
-				} )
+					}
+				})
 			);
 		},
 		save: function (props) {
 			var attributes = props.attributes;
 
-			return null;
+			return el(
+				'div',
+				useBlockProps.save({ className: props.className }),
+				el(RichText.Content, {
+					tagName: 'h2',
+					value: attributes.title
+				}),
+				attributes.mediaURL &&
+					el(
+						'div',
+						{ className: 'content-image' },
+						el('img', { src: attributes.mediaURL })
+					),
+				el(RichText.Content, {
+					tagName: 'div',
+					className: 'content',
+					value: attributes.content
+				})
+			);
 		}
 	});
 })(
