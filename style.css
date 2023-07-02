@@ -23,6 +23,15 @@
     width: 50%;
 }
 
+.wp-block-danstoakes-img-content-two-col .button {
+    color: #FFF;
+    background-color: #FF8C42;
+    border-radius: 20px;
+    font-weight: bold;
+    padding: 0.75em;
+    width: fit-content;
+}
+
 @media only screen and (min-width: 1000px) {
     .wp-block-danstoakes-img-content-two-col {
         flex-direction: row;
