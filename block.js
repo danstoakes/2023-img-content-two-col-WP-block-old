@@ -79,7 +79,7 @@
 						value: attributes.title,
 						onChange: function (value) {
 							props.setAttributes({ title: value });
-						},
+						}
 					}),
 					el(RichText, {
 						tagName: 'div',
@@ -92,22 +92,26 @@
 							props.setAttributes({ content: value });
 						}
 					}),
-					el(RichText, {
-						tagName: 'span',
-						placeholder: __('Button text', 'danstoakes'),
-						value: attributes.buttonText,
-						onChange: function (value) {
-							props.setAttributes({ buttonText: value });
-						},
-					}),
-					el(RichText, {
-						tagName: 'a',
-						placeholder: __('Button URL', 'danstoakes'),
-						value: attributes.buttonUrl,
-						onChange: function (value) {
-							props.setAttributes({ buttonUrl: value });
-						},
-					})
+					el(
+						'div',
+						{ className: 'button-wrapper' },
+						el(RichText, {
+							tagName: 'span',
+							placeholder: __('Button text', 'danstoakes'),
+							value: attributes.buttonText,
+							onChange: function (value) {
+								props.setAttributes({ buttonText: value });
+							}
+						}),
+						el(RichText, {
+							tagName: 'a',
+							placeholder: __('Button URL', 'danstoakes'),
+							value: attributes.buttonUrl,
+							onChange: function (value) {
+								props.setAttributes({ buttonUrl: value });
+							}
+						})
+					)
 				),
 				el(
 					'div',

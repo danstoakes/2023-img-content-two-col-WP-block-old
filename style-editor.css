@@ -1,0 +1,15 @@
+.wp-block-danstoakes-img-content-two-col {
+    border: 1px solid black;
+}
+
+.wp-block-danstoakes-img-content-two-col .button-wrapper {
+    border: 1px solid black;
+    column-gap: 1em;
+    display: flex;
+    margin-top: 1em;
+    padding: 0.5em;
+}
+
+.wp-block-danstoakes-img-content-two-col .content-image {
+    overflow: hidden;
+}

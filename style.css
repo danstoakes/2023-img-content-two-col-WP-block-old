@@ -1,8 +1,10 @@
 .wp-block-danstoakes-img-content-two-col {
+    align-items: center;
     display: flex;
     flex-direction: column;
     gap: 2em;
     justify-content: center;
+    min-height: 100vh;
     padding: 2.5rem;
 }
 
@@ -17,6 +19,7 @@
 }
 
 .wp-block-danstoakes-img-content-two-col .content-wrapper {
+    align-items: start;
     display: flex;
     flex-direction: column;
     padding: 0;
